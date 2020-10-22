@@ -39,14 +39,16 @@ public class Movement : MonoBehaviour
             rb.AddForce(-force, 0, 0);
         }
 
-        if (Input.GetKey("space"))
+        if (Input.GetKey("space") && grounded == true)
         {
-            if (grounded == true)
-            {
                 rb.AddForce(0, jumpforce, 0);
                 grounded = false;
-            }
             
+        }
+
+        if (rb.position.y < -5f)
+        {
+            FindObjectOfType<GameManager>().endgame();
         }
     }
 }
